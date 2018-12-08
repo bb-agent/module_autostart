@@ -20,7 +20,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>FruityWifi</title>
+<title>BlackBulb</title>
 <script src="../js/jquery.js"></script>
 <script src="../js/jquery-ui.js"></script>
 <link rel="stylesheet" href="../css/jquery-ui.css" />
@@ -67,7 +67,7 @@ $service = $_POST["service"];
 if ($logfile != "" and $action == "delete") {
     $exec = "$bin_rm ".$mod_logs_history.$logfile.".log";
     //exec("$bin_danger \"$exec\"", $dump); //DEPRECATED
-    exec_fruitywifi($exec);
+    exec_blackbulb($exec);
 }
 
 include "includes/options_config.php";
@@ -88,7 +88,7 @@ include "includes/options_config.php";
     ?>
     
     <?
-    $ismoduleup = exec("grep 'FruityWifi-autostart.php' /etc/rc.local");
+    $ismoduleup = exec("grep 'BlackBulb-autostart.php' /etc/rc.local");
     if ($ismoduleup != "") {
         echo "$mod_alias  <font color=\"lime\"><b>enabled</b></font>.&nbsp; | <a href=\"includes/module_action.php?service=responder&action=stop&page=module\"><b>stop</b></a>";
     } else { 

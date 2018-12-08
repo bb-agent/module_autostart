@@ -50,28 +50,28 @@ if($service != "") {
         $web_path = str_replace("/","\\/",$web_path);
         $logs = str_replace("/","\\/",$mod_logs);
         
-        $exec = "$bin_sed -i 's/^\\\$srv_port =.*/\\\$srv_port = \\\"$srv_port\\\";/g' FruityWifi-autostart.php";
+        $exec = "$bin_sed -i 's/^\\\$srv_port =.*/\\\$srv_port = \\\"$srv_port\\\";/g' BlackBulb-autostart.php";
         //exec("$bin_danger \"" . $exec . "\""); //DEPRECATED
-        exec_fruitywifi($exec);
+        exec_blackbulb($exec);
         
-        $exec = "$bin_sed -i 's/^\\\$srv_https =.*/\\\$srv_https = \\\"$srv_https\\\";/g' FruityWifi-autostart.php";
+        $exec = "$bin_sed -i 's/^\\\$srv_https =.*/\\\$srv_https = \\\"$srv_https\\\";/g' BlackBulb-autostart.php";
         //exec("$bin_danger \"" . $exec . "\""); //DEPRECATED
-        exec_fruitywifi($exec);
+        exec_blackbulb($exec);
         
-        $exec = "$bin_sed -i 's/^\\\$srv_dir =.*/\\\$srv_dir = \\\"$srv_dir\\\";/g' FruityWifi-autostart.php";
+        $exec = "$bin_sed -i 's/^\\\$srv_dir =.*/\\\$srv_dir = \\\"$srv_dir\\\";/g' BlackBulb-autostart.php";
         //exec("$bin_danger \"" . $exec . "\""); //DEPRECATED
-        exec_fruitywifi($exec);
+        exec_blackbulb($exec);
         
-        $exec = "$bin_sed -i 's/^\\\$web_path =.*/\\\$web_path = \\\"$web_path\\\";/g' FruityWifi-autostart.php";
+        $exec = "$bin_sed -i 's/^\\\$web_path =.*/\\\$web_path = \\\"$web_path\\\";/g' BlackBulb-autostart.php";
         //exec("$bin_danger \"" . $exec . "\""); //DEPRECATED
-        exec_fruitywifi($exec);
+        exec_blackbulb($exec);
     
-        $exec = "$bin_sed -i 's/^\\\$logs =.*/\\\$logs = \\\"$logs\\\";/g' FruityWifi-autostart.php";
+        $exec = "$bin_sed -i 's/^\\\$logs =.*/\\\$logs = \\\"$logs\\\";/g' BlackBulb-autostart.php";
         //exec("$bin_danger \"" . $exec . "\""); //DEPRECATED
-        exec_fruitywifi($exec);
+        exec_blackbulb($exec);
     
         // INCLUDE rc.local
-        $exec = "grep 'FruityWifi-autostart.php' /etc/rc.local";
+        $exec = "grep 'BlackBulb-autostart.php' /etc/rc.local";
         $isautostart = exec($exec);
         if ($isautostart  == "") {
 			
@@ -81,17 +81,17 @@ if($service != "") {
 			if ($isexit  == "") {
 				$exec = "echo 'exit 0' >> /etc/rc.local";
 				//exec("$bin_danger \"$exec\"" ); //DEPRECATED
-                exec_fruitywifi($exec);
+                exec_blackbulb($exec);
 			} 
 			
 			// Insert Autostart in rc.local
-            $exec = "sed -i '/FruityWifi-autostart.php/d' /etc/rc.local";
+            $exec = "sed -i '/BlackBulb-autostart.php/d' /etc/rc.local";
             //exec("$bin_danger \"$exec\"" ); //DEPRECATED
-            exec_fruitywifi($exec);
+            exec_blackbulb($exec);
             
-            $exec = "sed -i 's/^exit 0/php $srv_dir\/FruityWifi-autostart.php\\nexit 0/g' /etc/rc.local";
+            $exec = "sed -i 's/^exit 0/php $srv_dir\/BlackBulb-autostart.php\\nexit 0/g' /etc/rc.local";
             //exec("$bin_danger \"$exec\"" ); //DEPRECATED
-            exec_fruitywifi($exec);
+            exec_blackbulb($exec);
             
         }
 
@@ -99,30 +99,30 @@ if($service != "") {
         if ( 0 < filesize( $mod_logs ) ) {
             $exec = "$bin_cp $mod_logs $mod_logs_history/".gmdate("Ymd-H-i-s").".log";
             //exec("$bin_danger \"$exec\"" ); //DEPRECATED
-            exec_fruitywifi($exec);
+            exec_blackbulb($exec);
             
             $exec = "$bin_echo '' > $mod_logs";
             //exec("$bin_danger \"$exec\"" ); //DEPRECATED
-            exec_fruitywifi($exec);
+            exec_blackbulb($exec);
         }
     
     
     } else if($action == "stop") {
         
         // REMOVE from rc.local
-        $exec = "sed -i '/FruityWifi-autostart.php/d' /etc/rc.local";
+        $exec = "sed -i '/BlackBulb-autostart.php/d' /etc/rc.local";
         //exec("$bin_danger \"$exec\"" ); //DEPRECATED
-        exec_fruitywifi($exec);
+        exec_blackbulb($exec);
             
         // COPY LOG
         if ( 0 < filesize( $mod_logs ) ) {
             $exec = "$bin_cp $mod_logs $mod_logs_history/".gmdate("Ymd-H-i-s").".log";
             //exec("$bin_danger \"$exec\"" ); //DEPRECATED
-            exec_fruitywifi($exec);
+            exec_blackbulb($exec);
             
             $exec = "$bin_echo '' > $mod_logs";
             //exec("$bin_danger \"$exec\"" ); //DEPRECATED
-            exec_fruitywifi($exec);
+            exec_blackbulb($exec);
         }
 
     }
@@ -133,11 +133,11 @@ if ($install == "install_autostart") {
 
     $exec = "chmod 755 install.sh";
     //exec("$bin_danger \"$exec\"" ); //DEPRECATED
-    exec_fruitywifi($exec);
+    exec_blackbulb($exec);
 
     $exec = "$bin_sudo ./install.sh > $log_path/install.txt &";
     //exec("$bin_danger \"$exec\"" ); //DEPRECATED
-    exec_fruitywifi($exec);
+    exec_blackbulb($exec);
 
     header('Location: ../../install.php?module=autostart');
     exit;

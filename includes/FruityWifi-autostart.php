@@ -1,10 +1,10 @@
 <?
 $srv_port = "8000";
 $srv_https = "";
-$srv_dir = "/usr/share/fruitywifi/www/modules/autostart/includes";
-//$web_path = "/FruityWifi";
+$srv_dir = "/usr/share/blackbulb/www/modules/autostart/includes";
+//$web_path = "/BlackBulb";
 $web_path = "";
-$logs = "/usr/share/fruitywifi/logs/autostart.log";
+$logs = "/usr/share/blackbulb/logs/autostart.log";
 $token = "e5dab9a69988dd65e578041416773149ea57a054";
 
 if ($srv_https == "on") {
